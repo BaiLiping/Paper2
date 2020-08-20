@@ -1,0 +1,19 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Enegy Beamforming}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Uniform Linear Array}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Channel Model}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{beamforming codebook F}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{System Model}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Wireless Power Transfer}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Reinforcement Learning}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{problem setup}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Without Approximation}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.3}{With Approximation}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.4}{Policy Gradient Methods}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.5}{Multiagent Reinforcement Learning}{section.3}% 13
+\BOOKMARK [1][-]{section.4}{Beamforming as a Multiagent Reinforcement Learning problem}{}% 14
+\BOOKMARK [2][-]{subsection.4.1}{Environment}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.2}{A3C agent}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.3}{Simulation Result}{section.4}% 17
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 18
+\BOOKMARK [1][-]{section*.7}{References}{}% 19
