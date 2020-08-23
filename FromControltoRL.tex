@@ -42,20 +42,19 @@
 \begin{document}
 \bstctlcite{IEEEexample:BSTcontrol}
     \title{test}
-\title{Multiagent Reinforcement Learning based Energy Beamforming Control}
+\title{Bridging Control, Optimization and Reinforcement Learning}
 \author{ Zongqiang Pang,Liping Bai ~\IEEEmembership{Member,~IEEE,} \thanks{Nanjing Unversity of Posts and Telecommunications, College of Automation \& College of Artificial Intelligence, Nanjing, Jiangsu,210000 China email:zqpang@njupt.edu.cn}}
 % ====================================================================
 \maketitle
 % === ABSTRACT ====================================================================
 % =================================================================================
 \begin{abstract}
-Ultra low power devices make far-field wireless power transfer a viable option for energy delivery despite the exponential attenuation. Electromagnetic beams are constructed from the stations such
-that wireless energy is directionally concentrated around the ultra low power devices. Energy beamforming faces different challenges compare to information beamforming due to the lack of feedback on channel state. Various methods have been proposed such as one-bit channel feedback to enhance energy beamforming capacity, yet it still has considerable computation overhead and need to be computed centrally. Valuable resources and time is wasted on transfering control information back and forth. In this paper, we propose a novel multiagent reinforcement learning(MARL) formulation for codebook based beamforming control. It takes advantage of the inherienntly distributed structure in a wirelessly powered network and lay the ground work for fully locally computed beam control algorithms. Source code can be found at \url{https://github.com/BaiLiping/WirelessPowerTransfer}.
+As a master student from college of automation who focused on reinforcement learning, i tried to apply for appropriate labs in automation department. What I find out is that there are lot of researchers trained in control theory would like to incorporate the latest development in reinforcement learning into their research, yet when they made the journey to study that subject, they find tidious/nonstandarized notations and lack of rigirous proof. The defining textbook for reinforcement learning is that of Richard Sutton, yet he is giered towards an audience with Computer Scinece background. The notations is filled with subscript and superscript such that it would make it easy to be implemented by computer. The proof in Richard Sutton's book is also not satisfying from a control theorist point of view, since the main objective of him is to get the concepts acrossed rather than prove the logic behind them. In this papyer, I hope to provide control researchers tools to make that jump into reinforcement learning by introducing simplified notations and provide proof to the key ideas in RL. It also serves as a survey on the researchs at the intercept between control theory and reinforcement learning.
 \end{abstract}
 % === KEYWORDS ====================================================================
 % =================================================================================
 \begin{IEEEkeywords}
-Multiagent Reinforcement Learning,MARL, Wireless Power Transfer, Beamforming
+Reinforcement Learning, Control Theory, Optimal Control, Optimization
 \end{IEEEkeywords}
 % For peer review papers, you can put extra information on the cover
 % page as needed:
@@ -71,19 +70,18 @@ Multiagent Reinforcement Learning,MARL, Wireless Power Transfer, Beamforming
 % === I. Paper =============================================================
 % =================================================================================
 \section{Introduction}
-\IEEEPARstart{W}{ireless} power transfer(WPT) can be divided into near-field WPT with inductive coupling, magnetic resonant coupling or capacitive coupling {8357386} and far-field WPT with electromagnetic power beams. \cite{8246215} Compare to near-field WPT, the far-field option has considerable attenuation,  yet the increased application of ultra low power devices such as RFID, low power sensor networks \cite{7578025}, together with various forms of joint wireless information and power transfer technology such as Simultaneous Wireless Information and Power Transfer (SWIPT) \cite{8214104}, Wirelessly Powered Communication Networks (WPCNs) \cite{7462480}, Wirelessly Powered Backscatter Communication (WPBC) \cite{7842391} has made far-field WPT an important tool for powering those devices. Current far-field WPT technology can effectively transfer tens of microwatts of RF power to wireless devices from a distance of more than 10 meters. \cite{7462480}
+\IEEEPARstart{C}{ontrol}, Optimization and Reinforcement Learning are three distinct disciplines studying the same thing: controlling in a dynamic environment. Unfortunately, the silos of institutions means these three communities have their own channel of exchange. For instance, in Chinese institutions, Control and Optimization is usually housed in the department of Automation where the bread and butter of their work is modelling based on differential equations and solutions of control laws based on matrix theory and stochastic process. Their publication is usually funnelled through IEEE Transactions. Reinforcement Learning on the other hand, is usually housed in the Computer Science Department, where they use Statistical Learning theory to control a dynamic system with or without a physical model.Their research is usually funnelled through ACM affiliated publications.
 
-For far-field WPT to be as effective as it can be, directional RF phased array, a group of radiating elements whose phase and magnitude can be controlled to generate a directional beam pattern, \cite{665} is utilized to increase the directional gain of power transfer. Digital phased control has high fidelity and is mostly used for communication systems such as 5G Antenna. However, its energy and thermal cost make it prohibitively expensive for other applications. Analog phased control utilizes RF chain to systematically shift the phase discretely. In this paper, we focus on analog phased array.
+The success of reinforcement learning has lured people from traditional control background to incorporate those techniques into their research. Recently, there are interdiscipline conferences held specifially for the purpose of briding the gaps between these three groups of people, for instance the \href{https://l4dc.mit.edu/}{L4DC (Learning for Dynamic Control) conference} and \href{https://www.ipam.ucla.edu/programs/workshops/intersections-between-control-learning-and-optimization/}{Intersections between Control, Learning and Optimization Workshop}.
 
-There are two kinds of control algorithms for analog beamformer, one is adaptive beamforming, which can adjust according to various channel conditions, but it is expensive in terms of data collection and computational time. A less versatile control algorithm is switch-based control. There are set of predetermined codes for beamforming control. An exhaustive search is performed to find the "optimal code" for the given circumstances\cite{5262295} \cite{1237152}. The codebook exhaustive search algorithm or codebook based beam training process still has a large overhead, particularly for a multi-station scenario. In previous works reinforcement learning based solutions have been proposed where the multi-armed bandit framework \cite{8662770} or Q-learning framework \cite{Cui2019SecureWC} was used to render the process more effective.
+One of the obsticle for bringing everyone together is the notations. Much like a language, the style of notation is how researchers of various disciplines disttinguish one another. The starting point of reinforcement learning theory is Markov Decision Process(MDP) which is not so for the vast majority of control theory. For control theoriest, a system is usually expressed as a step-wise update: $ x_{t+1} = \mathcal{f}(x_t,u_t,e_t)$ where x is the state of the system, u is the control measure, e is the error where stochastidy is encoded. MDP encode stochastidy via transition matrix,   $ \mathcal{P}_{ss'}^a := Pr\{S_{t+1}=s'|S_{t}=s,A_{t}=a\}$ where s' is the new state, a is the action taken. A control theoriest would write it as $ \mathcal{P}_{x'x}^u := Pr\{X_{t+1}=x'|X_{t}=x, U_{t}=u\}$ If the transition matrix in MDP is equivolent to the error in step wise update, then clearly, this two ways of describing a system is equivolent.In this paper, the style of notation would be the step wise update with error since the target audience is control theoriests rather than computer scientists.
 
-In this paper, beamforming control is formulated as a multi-agent reinforcement learning problem. Rollout algorithm proposed by Dimitri P. Bertsekas \cite{Bertsekas2019MultiagentRA} is utilized to properly trade-off action space complexity and state-space complexity, hence reducing the learning time. This paper is arranged as the following. In section II, the system model described. In section III, the setup of multiagent reinforcement learning is introduced. In section IV, the problem of WPT is seen through the lense of multiagent reinforcement learning and the simulation result is presented.
+Another obsticle facing control theoriest is how tidious the notation in reinforcement learning is. Often times, there are multiple subscripts and superscripts to denote time, action, etc. Proof with this set of notation is extremely confusing. Quite often, control theoriests find themselves spending more time sorting out the transcripts than they would like to. In this paper, we introduce a set of simplifed notations based on the book of D. P. Bertsekas. Proof of key results in reinforcement learning is listed with this set of simplifed notations.
 
-
+The aim of this paper is to provide resources to control theoriest who want to embark on the journey of reinforcement learning. All the milestones in reinforcement learning are casted in the light of control theory. In the first section, the notation is introduced. In the second section, detailed proof is provided. In the third section, a list of intersections between control and reinforcement learning provided.
 % === II. Harmonically-Terminated Power Rectifier Analysis ========================
 % =================================================================================
-\section{Enegy Beamforming}
-\subsection{Uniform Linear Array}
+\section{Simplied Notation}
 The theories of phased array were fully formulated during the WWII era where an array of radars was deployed to detect an accurate angle of arrival \cite{5237174}. Today, phased array hardware is widely available as a commercial product as shown in Figure \ref{fig:pivotal}. Together with various forms of Space Time Signal Processing(STSP), phased array and the beamforming technology has become the enabling components for future communication networks. There are different configurations of arrays, in this paper, we only consider one dimension uniform linear array.
 
 \begin{figure}[H]
@@ -96,18 +94,6 @@ The theories of phased array were fully formulated during the WWII era where an 
 
 Suppose there are p propogation path from transmitter to receiver. the gain for each path is denoted by $\alpha_i$. The channel is modeled as a sum of each path. When Line of Sight(LoS) not available and the number of path is large, Rayleigh fading and a pleathera of channel modelling techniques can be applied to capture Non Line of Sight channel gain. In this paper, we only consider the environment with direct Line of Sight transmission and no reflection path.
 
-\begin{multicols}{2}
-\begin{equation}
-h=\sum_{i=1}^p \alpha_i e^{-j2\pi \frac{d_i}{\lambda}}
-\end{equation}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.25\textwidth]{channel.png}
-\caption{Multipath Channel Model}
-\label{fig:channel}
-\end{figure}
-\end{multicols}
 
 
 \subsection{beamforming codebook $\mathcal{F}$}
@@ -416,7 +402,16 @@ Action Function & Softmax \\
 \subsection{Simulation Result}
 \section{Conclusion}
 In this paper, we demonstrated the possibility to formulate WPT as a multiagent reinforcement learning problem, this lays the groundwork for further study towards fully locally computed control algorithms for wirelessly powered communication networks. Instead of group actions of all agents together, a multiagent rollout approach sees things sequentially, action taken by one agent becomes part of the state of another. This framework deduces the dimension of action space from exponential growth to multiplicative growth, and it can be applied to other problems. The most recent incarceration of beamforming technology is a passive reflective surface, or Intelligent Reflective Surface(IRS), where the reflective components are in the thousands. The multiagent approach proposed in this paper could be applied to IRS control as well, which should be a fruitful topic of future studies.
+
+
+
+
+
+
 \bibliographystyle{IEEEtran}
 \bibliography{Bibliography}
 %\printbibliography
+
+
+
 \end{document}
