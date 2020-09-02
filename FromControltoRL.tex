@@ -49,6 +49,13 @@
 % === ABSTRACT ====================================================================
 % =================================================================================
 \begin{abstract}
+
+This paper built on the survey of Benjamin Rachet to provide researchers in the field of control a bridge for incorporating reinforcement learning into their work. The proof of some of the key conlcusions are provided at the appendix, it is adapted from the book of Dimitrib. It is clear that at the intercection of control and reinforcement learning, there are a lot that can be done under the principals of decision makeing under uncertainty. There are lot that can be done with respect to there are that many incorpartted. Richard Demitric has proven that it is a sound principal.
+
+
+
+
+
 As a master student from college of automation who focused on reinforcement learning, i tried to apply for appropriate labs in automation department. What I find out is that there are lot of researchers trained in control theory would like to incorporate the latest development in reinforcement learning into their research, yet when they made the journey to study that subject, they find tidious/nonstandarized notations and lack of rigirous proof. The defining textbook for reinforcement learning is that of Richard Sutton, yet he is giered towards an audience with Computer Scinece background. The notations is filled with subscript and superscript such that it would make it easy to be implemented by computer. The proof in Richard Sutton's book is also not satisfying from a control theorist point of view, since the main objective of him is to get the concepts acrossed rather than prove the logic behind them. In this papyer, I hope to provide control researchers tools to make that jump into reinforcement learning by introducing simplified notations and provide proof to the key ideas in RL. It also serves as a survey on the researchs at the intercept between control theory and reinforcement learning.
 \end{abstract}
 % === KEYWORDS ====================================================================
@@ -73,6 +80,14 @@ Reinforcement Learning, Control Theory, Optimal Control, Optimization
 \IEEEPARstart{C}{ontrol}, Optimization and Reinforcement Learning are three distinct disciplines studying the same thing: controlling in a dynamic environment. Unfortunately, the silos of institutions means these three communities have their own channel of exchange. For instance, in Chinese institutions, Control and Optimization is usually housed in the department of Automation where the bread and butter of their work is modelling based on differential equations and solutions of control laws based on matrix theory and stochastic process. Their publication is usually funnelled through IEEE Transactions. Reinforcement Learning on the other hand, is usually housed in the Computer Science Department, where they use Statistical Learning theory to control a dynamic system with or without a physical model.Their research is usually funnelled through ACM affiliated publications.
 
 The success of reinforcement learning has lured people from traditional control background to incorporate those techniques into their research. Recently, there are interdiscipline conferences held specifially for the purpose of briding the gaps between these three groups of people, for instance the \href{https://l4dc.mit.edu/}{L4DC (Learning for Dynamic Control) conference} and \href{https://www.ipam.ucla.edu/programs/workshops/intersections-between-control-learning-and-optimization/}{Intersections between Control, Learning and Optimization Workshop}.
+
+Let us first consolidate the stylistic difference between RL community and Control community. For RL community, the system of notations are that of Richard Bellman, who studied dynamic programming.  For them, state is denoted by $ \mathcal{S}$, action is denoted by $\mathcal{A} $, the dynamics and stochasticity are captured via the transition matrix $\mathcal{P}$ of a Markov Decision Process. For Control community, the system of notations are that of Lev Pontryagin. State is denoted by $\mathcal{X}$, action is denoted by $\mathcal{U}$. The dynamics and stochasticity are captured via additive noise $\epsilon$ in the update rule: $x_{t+1}=\mathcal{f}(x_t,u_t)+\epsilon_t$
+
+
+
+
+
+
 
 One of the obsticle for bringing everyone together is the notations. Much like a language, the style of notation is how researchers of various disciplines disttinguish one another. The starting point of reinforcement learning theory is Markov Decision Process(MDP) which is not so for the vast majority of control theory. For control theoriest, a system is usually expressed as a step-wise update: $ x_{t+1} = \mathcal{f}(x_t,u_t,e_t)$ where x is the state of the system, u is the control measure, e is the error where stochastidy is encoded. MDP encode stochastidy via transition matrix,   $ \mathcal{P}_{ss'}^a := Pr\{S_{t+1}=s'|S_{t}=s,A_{t}=a\}$ where s' is the new state, a is the action taken. A control theoriest would write it as $ \mathcal{P}_{x'x}^u := Pr\{X_{t+1}=x'|X_{t}=x, U_{t}=u\}$ If the transition matrix in MDP is equivolent to the error in step wise update, then clearly, this two ways of describing a system is equivolent.In this paper, the style of notation would be the step wise update with error since the target audience is control theoriests rather than computer scientists.
 
