@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 \providecommand{\url}[1]{#1}
 \csname url@rmstyle\endcsname
 \providecommand{\newblock}{\relax}
@@ -18,6 +18,10 @@
 \fi
 #2}}
 
+\bibitem{Ho2016GenerativeAI}
+J.~Ho and S.~Ermon, ``Generative adversarial imitation learning,'' in
+  \emph{NIPS}, 2016.
+
 \bibitem{Finn2016UnsupervisedLF}
 C.~Finn, I.~J. Goodfellow, and S.~Levine, ``Unsupervised learning for physical
   interaction through video prediction,'' \emph{ArXiv}, vol. abs/1605.07157,
@@ -35,11 +39,25 @@ B.~Recht, ``A tour of reinforcement learning: The view from continuous
 K.~Hornik, ``Approximation capabilities of multilayer feedforward networks,''
   \emph{Neural Networks}, vol.~4, pp. 251--257, 1991.
 
-\bibitem{8463189}
-A.~{Nagabandi}, G.~{Kahn}, R.~S. {Fearing}, and S.~{Levine}, ``Neural network
-  dynamics for model-based deep reinforcement learning with model-free
-  fine-tuning,'' in \emph{2018 IEEE International Conference on Robotics and
-  Automation (ICRA)}, 2018, pp. 7559--7566.
+\bibitem{Levine2018ReinforcementLA}
+S.~Levine, ``Reinforcement learning and control as probabilistic inference:
+  Tutorial and review,'' \emph{ArXiv}, vol. abs/1805.00909, 2018.
+
+\bibitem{Sutton1998IntroductionTR}
+R.~Sutton and A.~Barto, ``Introduction to reinforcement learning,'' 1998.
+
+\bibitem{Kullback1951ONIA}
+S.~Kullback and R.~A. Leibler, ``On information and sufficiency,'' \emph{Annals
+  of Mathematical Statistics}, vol.~22, pp. 79--86, 1951.
+
+\bibitem{Hewing2020LearningBasedMP}
+L.~Hewing, K.~P. Wabersich, M.~Menner, and M.~N. Zeilinger, ``Learning-based
+  model predictive control: Toward safe learning in control,'' 2020.
+
+\bibitem{Mohan2020EmbeddingHP}
+A.~Mohan, N.~Lubbers, D.~Livescu, and M.~Chertkov, ``Embedding hard physical
+  constraints in neural network coarse-graining of 3d turbulence.''
+  \emph{arXiv: Computational Physics}, 2020.
 
 \bibitem{BelbutePeres2018EndtoEndDP}
 F.~de~Avila Belbute-Peres, K.~Smith, K.~R. Allen, J.~Tenenbaum, and J.~Z.
@@ -56,10 +74,14 @@ A.~Agrawal, B.~Amos, S.~Barratt, S.~P. Boyd, S.~Diamond, and J.~Z. Kolter,
   ``Differentiable convex optimization layers,'' \emph{ArXiv}, vol.
   abs/1910.12430, 2019.
 
-\bibitem{Shi2019NeuralLS}
-G.~Shi, X.~Shi, M.~O'Connell, R.~Yu, K.~Azizzadenesheli, A.~Anandkumar, Y.~Yue,
-  and S.-J. Chung, ``Neural lander: Stable drone landing control using learned
-  dynamics,'' \emph{2019 International Conference on Robotics and Automation
-  (ICRA)}, pp. 9784--9790, 2019.
+\bibitem{8463189}
+A.~{Nagabandi}, G.~{Kahn}, R.~S. {Fearing}, and S.~{Levine}, ``Neural network
+  dynamics for model-based deep reinforcement learning with model-free
+  fine-tuning,'' in \emph{2018 IEEE International Conference on Robotics and
+  Automation (ICRA)}, 2018, pp. 7559--7566.
+
+\bibitem{Blundell2015WeightUI}
+C.~Blundell, J.~Cornebise, K.~Kavukcuoglu, and D.~Wierstra, ``Weight
+  uncertainty in neural networks,'' \emph{ArXiv}, vol. abs/1505.05424, 2015.
 
 \end{thebibliography}

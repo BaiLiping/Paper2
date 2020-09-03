@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.2)  2 SEP 2020 22:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.2)  3 SEP 2020 22:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -998,14 +998,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<Control.png, id=160, 995.72pt x 626.34pt>
+<Control.png, id=90, 995.72pt x 626.34pt>
 File: Control.png Graphic file (type png)
 <use Control.png>
 Package pdftex.def Info: Control.png  used on input line 97.
@@ -1015,144 +1012,67 @@ Overfull \hbox (6.0pt too wide) in paragraph at lines 97--98
  [][] 
  []
 
-<bnn.png, id=163, 637.38126pt x 263.98625pt>
+<Control1.png, id=95, 659.46375pt x 527.9725pt>
+File: Control1.png Graphic file (type png)
+<use Control1.png>
+Package pdftex.def Info: Control1.png  used on input line 121.
+(pdftex.def)             Requested size: 154.80157pt x 123.9366pt.
+[2 <./Control.png> <./Control1.png>]
+<bnn.png, id=115, 637.38126pt x 263.98625pt>
 File: bnn.png Graphic file (type png)
 <use bnn.png>
-Package pdftex.def Info: bnn.png  used on input line 117.
-(pdftex.def)             Requested size: 258.0pt x 106.85744pt.
-
-Overfull \hbox (6.0pt too wide) in paragraph at lines 117--118
- [][] 
- []
-
-<Control1.png, id=164, 659.46375pt x 527.9725pt>
-File: Control1.png Graphic file (type png)
-<use Control1.png>
-Package pdftex.def Info: Control1.png  used on input line 125.
-(pdftex.def)             Requested size: 154.80157pt x 123.9366pt.
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 131.
-[2 <./Control.png> <./bnn.png (PNG copy)> <./Control1.png>]
-File: Control1.png Graphic file (type png)
-<use Control1.png>
-Package pdftex.def Info: Control1.png  used on input line 187.
-(pdftex.def)             Requested size: 103.19843pt x 82.61633pt.
-<Control2.png, id=180, 254.9525pt x 135.50626pt>
+Package pdftex.def Info: bnn.png  used on input line 137.
+(pdftex.def)             Requested size: 154.80157pt x 64.11124pt.
+<Control2.png, id=117, 413.545pt x 351.3125pt>
 File: Control2.png Graphic file (type png)
 <use Control2.png>
-Package pdftex.def Info: Control2.png  used on input line 194.
-(pdftex.def)             Requested size: 103.19843pt x 54.85077pt.
-<Control3.png, id=181, 219.82124pt x 117.43875pt>
+Package pdftex.def Info: Control2.png  used on input line 148.
+(pdftex.def)             Requested size: 154.80157pt x 131.50598pt.
+<Control3.png, id=118, 219.82124pt x 117.43875pt>
 File: Control3.png Graphic file (type png)
 <use Control3.png>
-Package pdftex.def Info: Control3.png  used on input line 201.
+Package pdftex.def Info: Control3.png  used on input line 207.
 (pdftex.def)             Requested size: 103.19843pt x 55.13348pt.
-<Control4.png, id=182, 266.9975pt x 119.44624pt>
+<Control4.png, id=119, 266.9975pt x 119.44624pt>
 File: Control4.png Graphic file (type png)
 <use Control4.png>
-Package pdftex.def Info: Control4.png  used on input line 208.
+Package pdftex.def Info: Control4.png  used on input line 214.
 (pdftex.def)             Requested size: 103.19843pt x 46.16829pt.
- [3 <./Control2.png> <./Control3.png> <./Control4.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 321--322
-[]\T1/ptm/m/n/10 (+20) Let us reg-is-ter a path se-quence taken by the
- []
-
-
-Underfull \hbox (badness 6032) in paragraph at lines 321--322
-\T1/ptm/m/n/10 (+20) agent as $\OML/cmm/m/it/10 ^^\$ \T1/ptm/m/n/10 (+20) such 
-that the se-quence is de-noted as
- []
-
-
-Underfull \hbox (badness 6252) in paragraph at lines 321--322
-\T1/ptm/m/n/10 (+20) {$\OML/cmm/m/it/10 S[]; A[]; R[]:::S[]; A[]; R[]$\T1/ptm/m
-/n/10 (+20) }. the gain of se-quence
- []
-
-[4]
-<without.png, id=232, 408.52625pt x 89.33376pt>
-File: without.png Graphic file (type png)
-<use without.png>
-Package pdftex.def Info: without.png  used on input line 363.
-(pdftex.def)             Requested size: 154.80157pt x 33.85039pt.
-
-Underfull \hbox (badness 3884) in paragraph at lines 368--369
-\T1/ptm/m/n/10 (+20) tion space com-plex-ity into state-space com-plex-ity by
- []
-
-
-Underfull \hbox (badness 3861) in paragraph at lines 368--369
-\T1/ptm/m/n/10 (+20) in-tro-duc-ing in-ter-me-di-ate states, de-noted as $\OML/
-cmm/m/it/10 S[]$ \T1/ptm/m/n/10 (+20) where
- []
-
-
-Underfull \hbox (badness 4832) in paragraph at lines 368--369
-\T1/ptm/m/n/10 (+20) k goes from 1 to M-1. The se-quence of data is
- []
-
-<with.png, id=234, 817.0525pt x 157.58875pt>
-File: with.png Graphic file (type png)
-<use with.png>
-Package pdftex.def Info: with.png  used on input line 372.
-(pdftex.def)             Requested size: 283.80157pt x 54.73848pt.
-
-Overfull \hbox (31.80157pt too wide) in paragraph at lines 372--373
- [][] 
- []
-
-<environment.png, id=236, 349.305pt x 264.99pt>
-File: environment.png Graphic file (type png)
-<use environment.png>
-Package pdftex.def Info: environment.png  used on input line 386.
-(pdftex.def)             Requested size: 154.80157pt x 117.43698pt.
-
-Overfull \hbox (13.79425pt too wide) in paragraph at lines 394--419
- [] 
- []
-
-(./FromControltoRL.bbl [5 <./without.png> <./with.png> <./environment.png>])
-[6
+ (./FromControltoRL.bbl [3 <./bnn.png (PNG copy)> <./Control2.png> <./Control3.
+png> <./Control4.png>]) [4
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 464.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 464.
- (./FromControltoRL.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 464.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 464.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 230.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 230.
+
+(./FromControltoRL.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 230.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 230.
 Package rerunfilecheck Info: File `FromControltoRL.out' has not changed.
-(rerunfilecheck)             Checksum: 7A6658E67C4D863E9943357C0297ED78;2206.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 464.
+(rerunfilecheck)             Checksum: EFC6E5E84E3C1B69839500F3540F1378;930.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 230.
  ) 
 Here is how much of TeX's memory you used:
- 23164 strings out of 481239
- 418833 string characters out of 5920378
- 694918 words of memory out of 5000000
- 37722 multiletter control sequences out of 15000+600000
- 656460 words of font info for 250 fonts, out of 8000000 for 9000
+ 23033 strings out of 481239
+ 417158 string characters out of 5920378
+ 690824 words of memory out of 5000000
+ 37641 multiletter control sequences out of 15000+600000
+ 651014 words of font info for 234 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,16n,60p,1492b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,7n,60p,1492b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw
-/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FromControltoRL.pdf (6 pages, 415270 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on FromControltoRL.pdf (4 pages, 284877 bytes).
 PDF statistics:
- 331 PDF objects out of 1000 (max. 8388607)
- 285 compressed objects within 3 object streams
- 75 named destinations out of 1000 (max. 500000)
- 30522 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 185 PDF objects out of 1000 (max. 8388607)
+ 157 compressed objects within 2 object streams
+ 40 named destinations out of 1000 (max. 500000)
+ 27803 words of extra memory for PDF output out of 29859 (max. 10000000)
 

@@ -42,14 +42,15 @@
 \begin{document}
 \bstctlcite{IEEEexample:BSTcontrol}
     \title{test}
-\title{A Guide to Riding the Waves of Reinforcement Learning for Control Researchers}
+\title{A Control Rearchers' Guide to the Reinforcement Learning Galaxy: A Survey}
 \author{ Zongqiang Pang,Liping Bai ~\IEEEmembership{Member,~IEEE,} \thanks{Nanjing Unversity of Posts and Telecommunications, College of Automation \& College of Artificial Intelligence, Nanjing, Jiangsu,210000 China email:zqpang@njupt.edu.cn}}
 % ====================================================================
 \maketitle
 % === ABSTRACT ====================================================================
 % =================================================================================
 \begin{abstract}
-This paper is aimed at providing researchers in the field of control and optimization a bridge for incorporating deep reinforcement learning into their work. Considerable amount of progress has been made in deep learning and its associated compuatational infrastructure, which makes fast and accurate approximation a possiblity. Beyond the obvious increased capacity of perception such as facial recognition and natural language processing that can be integrated into control tasks, deep reinforcement learning and the compuational capacities comes with it should be better utilized by control researchers to formulate their problems. Off the shelf implementations of various reinforcement learning agents written in either PyTorch or Tensorflow can be easily found. Yet, when control researchers venture into this subject, they would find out that there is still quite a lot caveats and pitfalls when it comes to applying neural network to optimization problems. They can't just formulate their optimization problem into reinforcement learning format and let those off the shelf agents have a go at it. We summarized how optimization problems differ from problems such as facial recognition and how the mathematical tools we use differ vary as a result. We also provide a summary of existing researches at the croassroad between optimization and reinforcement learning.
+This paper is aimed at providing researchers in the field of control and optimization a bridge for incorporating deep reinforcement learning into their work. We are not talking about the low hanging fruits such as adding visual recognition capacity into the control loops, but technical details on how to take advantage of the progresses brought about by deep learning and its computational infrastructure. Off the shelf implementations of various reinforcement learning agents written in either PyTorch or Tensorflow can be easily found. Yet, when control researchers venture into this subject, they would find out that there is still quite a lot caveats and pitfalls when it comes to applying neural network to optimization problems. They can't just formulate their optimization problem into reinforcement learning format and let those off the shelf agents have a go at it. In this paper, we present the taxotamy of reinforcement learning from the perspective of optimization and we tease out the most important concepts while screening away ideas that is half-baked. We hope to provide control researchers ideas and clues as of how to further their research by riding the wave of reinforcement learning.
+
 \end{abstract}
 % === KEYWORDS ====================================================================
 % =================================================================================
@@ -70,9 +71,10 @@ Reinforcement Learning, Control Theory, Optimal Control, Optimization
 % === I. Paper =============================================================
 % =================================================================================
 \section{Introduction}
-\IEEEPARstart{R}{einforcement} learning is process of methotically extracting information from observations to gradually bound the policy distribution, either directly through policy gradient methods or via scafolding measurements, such that the expected reward along a trajectory is maximized. This objective is quite similar to that of Trajectory Optimization which utilizes myriade of computational techniques to incorporating scripted constraints, which capture the dynamics of a system with exquisit equations. They are the "Black Box" approach and "White Box" approach to the problem of control, neither is perfect.
+\IEEEPARstart{R}{einforcement} learning is process of methotically extracting information from observations to gradually bound the policy distribution, either directly through policy gradient methods or via scaffolding measurements, such that the expected reward along a trajectory is maximized. This objective is quite similar to that of Trajectory Optimization which utilizes myriade of computational techniques to incorporating scripted constraints, which capture the dynamics of a system with exquisit equation, to carve out the optimal trajectories.
 
-The "Black Box" approach requires copious amount of data. Efforts has been made to make it more broadly applicable and more efficient. For instance, Sergey Levine utilizes unsupervised learning to build an agent with intuitions of the physical world \cite{Finn2016UnsupervisedLF}; Chelsea Finn introduced Meta-Learning \cite{Finn2017ModelAgnosticMF} to extract overaching structures embedded in similar tasks of different setting. This line of research is mostly done in the Computer Science department, and the most important tool kit for them is statistical learning theory. Despite effort from the best mathematical minds, some complicated dynamics still elude the "White Box" approach.
+They are the "Black Box" approach and "White Box" approach to the problem of control, neither is perfect.
+The "Black Box" approach requires copious amount of data. Efforts has been made to make it more broadly applicable and more efficient. For instance, imitation learning and reverse reinforcemnt learning \cite{Ho2016GenerativeAI} aims at derive constraints from observed best solution; Sergey Levine utilizes unsupervised learning to build an agent with intuitions of the physical world \cite{Finn2016UnsupervisedLF}; Chelsea Finn introduced Meta-Learning \cite{Finn2017ModelAgnosticMF} to extract overaching structures embedded in similar tasks of different setting. This line of research is mostly done in the Computer Science department, and the most important tool kit for them is statistical learning theory. Meanwhile, despite effort from the best mathematical minds, some complicated dynamics still elude the "White Box" approach.
 
 It is obvious that biological systems approaches control from both angles. Unfortunately, these two subjects are studied by two communities of researchers who use different notations to discribe the same processes and they publish their research only in journals of their own disciplines. In this paper, we hope to provide a bridge for researchers in the field of control theories who would like to incorporate reinforcement learning into their works.
 
@@ -97,25 +99,21 @@ Broadly speaking, there are three revenues where neuronetwork based approximatio
     \label{fig:1}
 \end{figure}
 
-\section{Additional Mathematical Tools}
-Before we dive into the detailed researches in each category, we'd like to introduce additional mathematical tools and measurements that has been proven useful in merging reinforcement learning with optimization. As we discussed in the previous section, the major breakthrough in the field of reinforcement learning is not necessarily the theory but the computational infrustruction. Today, reinforcement learning agents implemented with Tensorflow or PyTorch is widely available, yet if you simply formulate an optimization problem into reinforcement learning format and apply those off the shelf reinforcement learning agents, it would hardly work.
+Before we dive into the detailed researches in each category, we'd like to introduce additional mathematical tools and measurements that has been proven useful in merging reinforcement learning with optimization. One of the most important change of perspectives when control researchers ventures into the land of reinforcement learning is to formulate optimization as an inference problem \cite{Levine2018ReinforcementLA}. Tranditional optimization would translate constraints imposed on the struture into definitive trajectories, subject to disturbance and correction. Yet inference view of optimization is an ever narrowing band od distribution as information trickles in via experiments.
 
-Neuronetwork based approximation in the context of optimization and control is fundamentally different from those we find in applications such as facial recognition or natual language processing. Additional mathematical tools and measurements are required to fit the structures required by control problems. While the topic of statistical learning theory is vast and profund, we selected two concepts that is most germane for bridging reinforcement learning to control theoriest. The exact use of these concept would be specified in the subsequent sections when we discuss the related papers.
+There are two things control researchers should be aware of. One, if you simply apply reinforcement learning as it is written in Richard Sutton's book, it probably won't work for you. Additional statistical learning techniques are required. Two, Statistical learning is booming with ideas at this point. Every newly invented measurement and methods could be pretzeled into a self-sustainly structure if you know how to make such arguments, that does not mean it would be a useful tool for your research.
 
-\subsection{Mutual Information}
-The go to text book for reinforcement learning community is that of Richard Sutton \cite{Sutton1998IntroductionTR}. In ths system contstructed by Richard, the objective of an agent is to maximize discounted reward. This formulation is proven a sound goal in the context of video games. However, for optimizations with a physics underpining, reward maximization is not adequate since noise and disturbances is common place in control.
+Here we point out two concepts: Mutual Information and Baysian NeuroNet, which have proven to be integral for converting optimization into an inference.
 
-The mathematical measurement used for mutual information \cite{Kullback1951ONIA}, which is the KL divergence. As people exposed to the measurement theory, one obvious question is that why divergence instead of distance?
+The go to text book for reinforcement learning community is that of Richard Sutton \cite{Sutton1998IntroductionTR}. In the system contstructed by Richard, the objective of an agent is to maximize discounted reward. This formulation is proven a sound goal in the context of video games. However, for optimizations with a physics underpining, reward maximization is not adequate since noise and disturbances is common place in control.
 
-\subsection{Bayesian Neuro Network (BNN)}
+Exploration and Exploitation trade off is something studied exhaustively in the reinforcement learning community. A common strategy is $\epsilon$ greedy policy where the value of epsilon decays as the learning progresses. Yet, the decaying rate is a hyperparater that need to be tuned. Is there are more sysmtmatical way to balance the exploration and exploitation trade-off? This is particularly important for control related training since this application has considerable amount of disturbance and noise. If the policy converges too soon, any subsequent disturce can deviate the trajectory to the extend that it is no longer controllable.
 
-The venena formulation of neuronetwork is one where the weight of each neuron $w_i$ is a single number, which is adjusted based on the backward propogation process. Baysian Neuro Network is a network where the weigh is subject to a parameterized distribution as shown in Fig. \ref{fig:2} The use of Bayesian Neuro Network is to measure the uncertainly of the current iteration.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{bnn.png}
-    \caption{Neuronet and BNN}
-    \label{fig:2}
-\end{figure}
+The intuition behind maximum entropy reinforcenement learning is the heuristic that when we don't know all the circumstance, we should prioritize options that could give us more choices regardless of how the system dynamics turns out to be. Statitically speaking, this means we should maximize the entropy of a distribution, which measures how uncertain or how broad the distributionb is.
+
+The mathematical measurement used is mutual information \cite{Kullback1951ONIA}. It measures how much information regarding the random variable X is contained in the distribution of random variable Y. A reasonable question to ask is that out of all those measurements which captures "distance" in meansurement theory, why a divergence is chosen? Turns out, this choice is made because of its computational convenience, much like exponentials are chosen in integral transform because its nice features.
+
+
 
 \section{System Modelling}
 \begin{figure}[H]
@@ -123,42 +121,56 @@ The venena formulation of neuronetwork is one where the weight of each neuron $w
     \includegraphics[width=0.3\textwidth]{Control1.png}
 \end{figure}
 
-For people who are trained in classical control theory, system modelling and system identification are the bread and butter of their field of study. One of the most obvious way to derive a model from learning is through the following althrithm:
+There are two ways for collecting data of the system. One is offline. Just collecting as much trajectories as possible about this system and then build the model later. Second is online data collection where a sample is collected and then incorporated into the model building process right away.
 
-\begin{algorithm}
-\caption{Brute Force Modelling}
-\begin{algorithmic}[1]
+Strictly speaking, offline data collection based model building belongs to the domain of System Identification rather than reinforcement learning. After the data is collected and a system model is trained from offline data, an appropriate controllers can be computed based on that model. There are numerous applications in this line of research, and we would not elaborate on it since it is a topic tangential to our paper.
 
-    \State run random policy, collect $\mathcal{D}=(x,u,x')_i$
-    \While{Model Has Not Converged}
-    \State fit model to minimize $\displaystyle \sum_i \left\|\hat{f}(x_i,u_i)-x'\right\|$
-    \State Model Predictive Control using $\hat{f}(x_i,u_i)$
-    \State exercute control collect new data
-    \State append new data to $\mathcal{D}$
-    \EndWhile
+The online data collection and training method goes under the name iteration learning based model predictive control (ILMPC).This model training process doesn't have to start from scratch, althought that is certainly an option. Most likely there already exist a model that partially describes the system. It would be more efficient if we can somehow combine that partial model with a neural network, which would capture the unmodelled dynamics via online training.
 
-\end{algorithmic}
-\end{algorithm}
+A existing model can be additively combined \cite{Hewing2020LearningBasedMP} with a neural network, or it can be embedded into a neural network \cite{Mohan2020EmbeddingHP}. Optimization solver can also be embedded in the neural network as a laywer to encourage faster convergence. \cite{BelbutePeres2018EndtoEndDP} \cite{BelbutePeres2020CombiningDP} \cite{Agrawal2019DifferentiableCO}.
 
-\subsection{Measure Model Uncertainty with BNN}
-
-While in theory the aforementioned brute force modelling method should work, in practice it is proven to be far from satisfactory. \cite{8463189}. One possible explanation is that any overfitting of the model would be hard to overcome, resulting in suboptimal performance. One solution is to measure uncertainly of the model with BNN.
-
-asdfjajdflajsdlfjajdsfl;adfjlakjdflajsdflajkdfsjaldfja
-
-
-\subsection{Embeded Optimization Layer and Residual Dynamics}
-Writing governing equations of a physical system is something classical control theoriest trained on, yet there are always dynamics which are too intricate to be captured in full. One mental tool to deal with the uncaptured dynamics is to pack them all into a parameterized distribution which can be approximated with neuronetwork. There are two approaches in merging physics model with neuronetwork. One is to embed the optimization solver as a layer in the neuronet \cite{BelbutePeres2018EndtoEndDP} \cite{BelbutePeres2020CombiningDP} \cite{Agrawal2019DifferentiableCO}, two is to only approximate residual dynamics that can't be fully captured by the existing model \cite{Shi2019NeuralLS}.
+\begin{figure}
+\centering
+\begin{subfigure}{0.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{combine1.png}
+  \caption{Additive}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.4\linewidth]{combine2.png}
+  \caption{Embedding}
+\end{subfigure}
+\caption{Combine Model and Neural Net}
+\end{figure}
 
 
+While in theory the aforementioned modelling method should work, in practice it is proven to be far from optimal.  \cite{8463189}. One possible explanation is that any overfitting of the model along the way would be difficult to overcome by subsequent training, resulting in suboptimal performance. One solution is to measure uncertainly of the model with Bayesian Neural Network.
+
+The venena formulation of neuronetwork is one where the weight of each neuron $w_i$ is a single number, which is adjusted based on the backward propogation process. Baysian Neural Network(BNN) is a network where the weigh is subject to a parameterized distribution as shown in Fig. \ref{fig:2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{bnn.png}
+    \caption{Neural Network and BNN}
+    \label{fig:2}
+\end{figure}
 
 
-
-
-\subsection{Safe Region}
-
+BNN is used to measure the uncertainly of the model and better choices can be made when uncertainly of the model is part of the decision making process. \cite{Blundell2015WeightUI}
 
 \section{Policy Gradient}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Control2.png}
+    \label{fig:SI}
+\end{figure}
+
+The collected data can be used to train a model which informs which actions should be chosen. It can also be used to train the policy distribution either directly or through policy gradient. The direct policy training method is a theoretical possibility, but due since the number of actions along a trajectory is usually rather large, the valishing gradient problem facing this methods makes it had to implement. In this paper,we focus our discussion on the Policy Gradient Method.
+
+When control researchers are first exposed to the proof of policy gradient method provided in Richard Sutton's book, they would find it difficult to swallow. The notations are tidious and the logic non-rigirous. A better proof was only recently presented. \cite{Schulman2015TrustRP}
+
+
+
 \subsection{Trust Region Policy Iteration}
 \subsection{Direct Policy Fitting}
 
@@ -174,9 +186,6 @@ Writing governing equations of a physical system is something classical control 
 
 \subsection{Value Iteration and Policy Iteration}
 \subsection{Maximum Entropy Reinforcement Learning}
-Exploration and Exploitation trade off is something studied exhaustively in the reinforcement learning community. A common strategy is $\epsilon$ greedy policy where the value of epsilon decays as the learning progresses. Yet, the decaying rate is a hyperparater that need to be tuned. Is there are more sysmtmatical way to balance the exploration and exploitation trade-off? This is particularly important for control related training since this application has considerable amount of disturbance and noise. If the policy converges too soon, any subsequent disturce can deviate the trajectory to the extend that it is no longer controllable.
-
-The intuition behind maximum entropy reinforcenement learning is the heuristic that when we don't know all the circumstance, we should prioritize options that could give us more choices regardless of how the system dynamics turns out to be. Statitically speaking, this means we should maximize the entropy of a distribution, which measures how uncertain or how broad the distributionb is.
 
 
 kjhjhjhjhjh
@@ -208,21 +217,8 @@ Random shoot is the idea if rolling out trajectory at random and wht the fuck is
 
 
 
-random text
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.2\textwidth]{Control1.png}
-    \caption{Optimization}
-    \label{fig:CO}
-\end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.2\textwidth]{Control2.png}
-    \caption{System Identification}
-    \label{fig:SI}
-\end{figure}
 
 \begin{figure}[H]
     \centering
@@ -237,246 +233,6 @@ random text
     \caption{Approximate Dynamic Programming}
     \label{fig:ADP}
 \end{figure}
-
-
-
-\subsection{Wireless Power Transfer}
-
-The objective of energy beamforming control is to choose a beamforming code for each energy transmitting node such that the total received power is maximized while satisfying the minimum energy requirement of each energy receiver.
-
-\begin{equation*}
-    \begin{aligned}
-        & \underset{ \textbf{f}_p, \forall p}{\text{maximize}}
-        && \displaystyle\sum_{j \in \{1,2,...,L\}} e_j\\
-        & \text{subject to}
-        && \textbf{f}_p \in \mathcal{F}, \forall p;\\
-        &&& e_j \geq e_{min}\\
-    \end{aligned}
-\end{equation*}
-
-
-\section{Reinforcement Learning}
-
-
-\subsection{problem setup}
-Twritten in its recursive form, known as Bellman Equation, which is the basis for an iteratively implemented backward induction algorithm:
-
-\begin{equation}
-        G_{t}=R_{t}+\gamma G_{t+1}
-    \label{bellman}
-\end{equation}
-Transition matrix is intruduced to encode the stochastidy in the environmental dynamics. Transaction Matrix $\mathcal{P}$ is defined as:
-
-\begin{equation}
-    \mathcal{P}_{ss'}^a := Pr\{S_{t+1}=s'|S_{t}=s,A_{t}=a\}
-\end{equation}
-
-
-State/Action Function q(s,a) is definied as expected gain starting from state s by taking action a:
-
-\begin{align}
-\begin{split}
-    q(s,a) :&= \mathbb{E}\{G_t|S_t=s,A_t=a\}\\
-    &=\mathbb{E} \{\sum_{k=0}^{T-t} \gamma ^k R_{t+k+1}| S_t=s,A_t=a\}\\
-\end{split}
-\end{align}
-Policy is defined as:
-\begin{equation}
-    \pi(s,a):=Pr(A=a|S=s)
-\end{equation}
-Optimal Policy is defined as:
-\begin{equation}
-    \pi^*(s):=\argmax_a q(s,a)
-\end{equation}
-
-
-Value Function v(s) is defined as the expected gain starting from state s:
-
-\begin{align}
-\begin{split}
-    v(s) :&=  \mathbb{E}\{G_t|S_t=s\}\\
-    &=\mathbb{E} \{\sum_{k=0}^{T-t} \gamma ^k R_{t+k+1}| S_t=s\}\\
-    &=\sum_{a \in \mathcal{A}} \pi(s,a) q(s,a)\\
-\end{split}
-\end{align}
-
-\subsection{Without Approximation}
-One obvious approach to learning is to statistically construct a model of the environment, which is called Model-Based Learning. The most primitive form of model-based learning is Bellman Equation based backward induction. Statistical tactics, such as maximum likelihood, Bayesian methods, etc., can be deployed to approximate the model with the least amount of sampling. However, since the environment is implicitly embedded in v(s) and q(s,a), the model building process can be circumvented entirely, hence Model-Free Learning. Depending on whether the iteration rules is policy dependent, model-free learning can be subdivided into on-policy learning and off-policy learning.
-
-One hindrance to the implementation of the brute force backward induction is its memory requirement. A more effective approach is to update q value and v value after one episode, one step, or n steps. They are called Monte Carlo Method, Temporal Difference Method, and $\lambda(n)$ Method respectively.
-
-For online learning, $\epsilon$-greedy Policy $\pi_{\epsilon}(s)$ is frequently deployed to balance exploration and exploitation, such that the environment can be encoded most efficiently. $\epsilon$ is initiated set to 1 and then asymptotically goes to 0 as the episode counts increases.
-
-\begin{equation*}
-    \pi_{\epsilon}(s,a) = \begin{cases}
-        1-\epsilon+\frac{\epsilon}{|A|}& \displaystyle\argmax_{a} q_{\epsilon}(s,a)\\
-        \frac{\epsilon}{|A|}& \text{otherwise}\\
-           \end{cases}
-\end{equation*}
-
-\subsection{With Approximation}
-When the problem gets complex, state S becomes a rather large vector and function approximation with neuro networks can be utilized to facilitate learning. Reinforcement learning as a self-sustaining mathematical framework has been refined by Rich Sutton et al. since the 1980s. Only recently, the progress made with Deep Learning has been applied to the realm of Reinforcement Learning
-
-Let the value function and state/action function be parameterized with $\textbf{w}:  \hat{v}(s,\textbf{w}) \approx v(s)$ and $\hat{q}(s,a,\textbf{w}) \approx q(s,a) $
-
-Let the $i^{th}$ iteration of parameter be denoted as $\textbf{$w_i$}$. The Loss Function $\mathcal{L}(\textbf{$w_i$})$ is defined as the following:
-\begin{equation}
-    \mathcal{L}(\textbf{$w_i$}) := \mathbb{E}\{[v(s)-\hat{v}(s,\textbf{$w_i$})]^2\}
-    \label{v_loss}
-\end{equation}
-
-\begin{equation}
-    \mathcal{L}(\textbf{$w_i$}) := \mathbb{E}\{[q(s,a)-\hat{q}(s,a,\textbf{$w_i$})]^2\}
-    \label{q_loss}
-\end{equation}
-While the real value of v(s) and q(s,a) are not knowable, it can be approximated:
-\begin{equation}
-    v(s) \approx \sum_{a \in A} R(s,a)+\gamma v(s',\textbf{w})
-    \label{v_approx}
-\end{equation}
-\begin{equation}
-    q(s,a) \approx r+\gamma \argmax_{a} q(s',a',\textbf{w})
-    \label{q_approx}
-\end{equation}
-
-The Gradient of weighing paramter \textbf{w} can be derived from \ref{v_loss} and \ref{q_loss} with the real values substituted by \ref{v_approx} and \ref{q_approx} respectively. By convention, constant is omitted. Parameter is updated following Gradient Descent:
-\begin{equation}
-\textbf{w}_{i}=\textbf{w}_{i-1}-\nabla_{w_{i-1}} \mathcal{L}(w_{i-1})
-\end{equation}
-\subsection{Policy Gradient Methods}
-Policy $\pi(s)$ can be written as a function parameterized by $\theta$ with s as input and a smooth distribution overall all actions as output.By adjusting parameter $\theta$ we can adjust the distribution over action choices for different states. This style of learning is called policy gradient-based learning.
-
-Let us register a path sequence taken by the agent as $\tau$ such that the sequence is denoted as \{$S_{\tau 0},A_{\tau 0}, R_{\tau 0}...S_{\tau T},A_{\tau T},R_{\tau T}$\}. the gain of sequence $\tau$ is defined as the gain of this entire sequence of state, action, reward:
-\begin{equation}
-    G(\tau):=\displaystyle\sum_{t=0}^{T}\gamma^t R_t
-\end{equation}
-
-Denote $P(\tau,\theta)$ as the probability that path $\tau$ is travesed when the policy is parameterized by $\theta$. The Objective Function can be defined in various ways. Here we adopt the definition as the following:
-\begin{equation}
-    U(\theta)=\sum_{\tau}P(\tau,\theta)G(\tau)
-\end{equation}
-
-
-The objective of the policy gradient method is to find the parameter $\theta$ to maximize the objective function.
-
-The gradient of aforementioned utility function is:
-\begin{equation}
-    \nabla_{\theta} U(\theta)= \nabla_{\theta}\sum_{\tau}P(\tau,\theta) G(\tau)
-\end{equation}
-
-A mathematical sleight of hand called Importance Sampling is deployed to convert this theoretical expression of gradient into something that is algorithmically feasible.
-
-\begin{align}
-\begin{split}
-\nabla_{\theta} U(\theta) \approx \frac{1}{N}\displaystyle\sum_{\tau=1}^{N}\displaystyle\sum_{t=0}^{T-1} \nabla_{\theta}ln\pi_{\theta}(s,a)|_{\theta_{old}}[q^{\pi_{\theta_{old}}}(s,a)-b]\\
-\end{split}
-\end{align}
-
-We can use stochastic gradient descent(SGD) method to update $\theta$:
-\begin{equation}
-    \theta=\theta_{old}-\alpha \nabla_{\theta}ln\pi_{\theta}(s,a)|_{\theta_{old}}[q^{\pi_{\theta_{old}}}(s,a)-b]
-\end{equation}
-
-Actor-Critic Method takes advantage of both policy gradient and function approximation to build a bootstrap structure that lead up to fast convergence. state/action function for policy $\pi_{\theta}(s)$ is approximated by $q^{\pi_{\theta}}(s,a,\textbf{w})$.Baseline b is introduced into the bootstrap stracture to foster convergence. Different algorithms define baseline differently. In advantage Actor-Critic algorithm, baseline is defined as a value function based on $\pi_{\theta}$.Because the SGD updating process does not rely on the ordering of things, it is obvious that some of the aforementioned computations can be done asynchronously. Asynchronous Advantage Actor-Critic (A3C) is proven one of the most effective agents for renforcement learning, and is the one we will use in this paper.
-
-\subsection{Multiagent Reinforcement Learning}
-$A_t=\{A_t^1,A_t^2,...,A_t^M\}$ M is the number of agents. The action space is cartician product of action choices available to each agent. $A_t(s)=A_t^1(s) \times A_t^2(s) \times ... \times A_t^M(s)$, which grows exponentially as the number of agents grows.
-
-
-Without intermidiate state rollout, the sequences of data collected is:
-...$S_t, A_t, R_t, S_{t+1}$... as shown in Figure \ref{fig:without}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.3\textwidth]{without.png}
-\caption{Without Rollout}
-\label{fig:without}
-\end{figure}
-
-The intermediate states rollout technique converting action space complexity into state-space complexity by introducing intermediate states, denoted as $S_t^k$ where k goes from 1 to M-1. The sequence of data is now: ...$S_t,A_t^1,R_t^1,S_t^1,A_t^2,R_t^2, S_t^2, ... , S_t^{M-1},A_t^M,R_t^M,S_{t+1}$... as shown in Figure \ref{fig:with}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.55\textwidth]{with.png}
-\caption{With Rollout}
-\label{fig:with}
-\end{figure}
-suppose each agent has N choices. This formulation reduces the size action space from $N^M$ to $N \times M$.
-
-
-\section{Beamforming as a Multiagent Reinforcement Learning problem}
-\subsection{Environment}
-The wirelessly powered communication network has L energy transmitting stations positioned at the corner of a 30m x 30m field. K energy receivers randomly scattered between 1m to 29m as illustrated by Figure \ref{fig:environment}. 0.5s of energy transfer is followed with 0.5s of information transfer. Assume no energy leftover at each cycle, such that at the beginning of the next energy transfer interval, the remaining power at each energy receiver is 0.
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.3\textwidth]{environment.png}
-\caption{Environment}
-\label{fig:environment}
-\end{figure}
-
-
-\begin{small}
-\begin{center}
-\begin{tabular}{ c c }
-\hline
-Number of Energy Transmitting Nodes & L=4\\
-\hline
-&$TX_1$(0,0)\\
-&$TX_2$(30,0)\\
-{Positions of Trasmitting Node}&$TX_3$(30,30)\\
-&$TX_4$(0,30)\\
-\hline
-Number of Radiation Elements per Trasmitting Node & M=64\\
-\hline
-Energy Carrier Frequency & 8M Hz\\
-\hline
-Field of Energy Receivers & 30m x 30m\\
-\hline
-Number of Energy Receivers & K \\
-\hline
-Energy Transfer Time & 0.5s \\
-\hline
-Information Transfer Time & 0.5s\\
-\hline
-Maximum Number of Steps & 100\\
-\hline
-
-\end{tabular}
-\end{center}
-\end{small}
-
-Observation Space:\{$e_1,e_2,...e_K,c_1,c_2,c_3,c_4$\}
-where $e_j$ is the energy received at the $j^{th}$ receiver, $c_i$ is the codebook choice for the $i^{th}$ energy emitting node.
-
-Reward: If $e_j$ < $e_min$, reward is deducted by 50 points each. If $e_{total}^new$ > $e_{total}^new$, reward is increased by 100 points. If $e_{total}^new$ < $e_{total}^new$, reward is deduced by 300 points.
-
-\subsection{A3C agent}
-\begin{small}
-\begin{center}
-\begin{tabular}{ c c }
-\hline
-Layers of Actor Network & 3\\
-\hline
-Layers of Critic Network & 3\\
-\hline
-Learning Rate for Actor & $\alpha_a$=0.1\\
-\hline
-Learning Rate for Critic & $\alpha_c$=0.1\\
-\hline
-Discount Rate & $\gamma$=0.9 \\
-\hline
-Action Function & Softmax \\
-\hline
-
-\end{tabular}
-\end{center}
-\end{small}
-
-\subsection{Simulation Result}
-\section{Conclusion}
-In this paper, we demonstrated the possibility to formulate WPT as a multiagent reinforcement learning problem, this lays the groundwork for further study towards fully locally computed control algorithms for wirelessly powered communication networks. Instead of group actions of all agents together, a multiagent rollout approach sees things sequentially, action taken by one agent becomes part of the state of another. This framework deduces the dimension of action space from exponential growth to multiplicative growth, and it can be applied to other problems. The most recent incarceration of beamforming technology is a passive reflective surface, or Intelligent Reflective Surface(IRS), where the reflective components are in the thousands. The multiagent approach proposed in this paper could be applied to IRS control as well, which should be a fruitful topic of future studies.
 
 
 
