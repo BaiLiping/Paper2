@@ -116,32 +116,29 @@ The mathematical measurement used is mutual information \cite{Kullback1951ONIA}.
 
 
 \section{System Modelling}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.3\textwidth]{Control1.png}
-\end{figure}
 
 There are two ways for collecting data of the system. One is offline. Just collecting as much trajectories as possible about this system and then build the model later. Second is online data collection where a sample is collected and then incorporated into the model building process right away.
 
-Strictly speaking, offline data collection based model building belongs to the domain of System Identification rather than reinforcement learning. After the data is collected and a system model is trained from offline data, an appropriate controllers can be computed based on that model. There are numerous applications in this line of research, and we would not elaborate on it since it is a topic tangential to our paper.
+Strictly speaking, offline data collection based model building belongs to the domain of System Identification rather than reinforcement learning. But since it is tangentially related to our paper, we still list it here. After the data is collected and a system model is trained from offline data, an appropriate controllers can be computed based on that model. There are numerous applications in this line of research, supposedly the first successfully implemented non-linear controller based on this method is that of Caltech's Neural Lander. \cite{Shi2019NeuralLS}
 
 The online data collection and training method goes under the name iteration learning based model predictive control (ILMPC).This model training process doesn't have to start from scratch, althought that is certainly an option. Most likely there already exist a model that partially describes the system. It would be more efficient if we can somehow combine that partial model with a neural network, which would capture the unmodelled dynamics via online training.
 
-A existing model can be additively combined \cite{Hewing2020LearningBasedMP} with a neural network, or it can be embedded into a neural network \cite{Mohan2020EmbeddingHP}. Optimization solver can also be embedded in the neural network as a laywer to encourage faster convergence. \cite{BelbutePeres2018EndtoEndDP} \cite{BelbutePeres2020CombiningDP} \cite{Agrawal2019DifferentiableCO}.
+A existing model can be additively combined \cite{Hewing2020LearningBasedMP} with a neural network, or it can be embedded into a neural network \cite{Mohan2020EmbeddingHP} as shown by Fig. \ref{fig:combine}. Optimization solver can also be embedded in the neural network as a laywer to encourage faster convergence. \cite{BelbutePeres2018EndtoEndDP} \cite{BelbutePeres2020CombiningDP} \cite{Agrawal2019DifferentiableCO}.
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\begin{subfigure}{0.5\textwidth}
+\begin{subfigure}{0.25\textwidth}
   \centering
-  \includegraphics[width=.4\linewidth]{combine1.png}
+  \includegraphics[width=\linewidth]{combine1.png}
   \caption{Additive}
 \end{subfigure}%
-\begin{subfigure}{.5\textwidth}
+\begin{subfigure}{.25\textwidth}
   \centering
-  \includegraphics[width=.4\linewidth]{combine2.png}
+  \includegraphics[width=\linewidth]{combine2.png}
   \caption{Embedding}
 \end{subfigure}
 \caption{Combine Model and Neural Net}
+\label{fig:combine}
 \end{figure}
 
 
@@ -158,21 +155,10 @@ The venena formulation of neuronetwork is one where the weight of each neuron $w
 
 BNN is used to measure the uncertainly of the model and better choices can be made when uncertainly of the model is part of the decision making process. \cite{Blundell2015WeightUI}
 
-\section{Policy Gradient}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.3\textwidth]{Control2.png}
-    \label{fig:SI}
-\end{figure}
 
 The collected data can be used to train a model which informs which actions should be chosen. It can also be used to train the policy distribution either directly or through policy gradient. The direct policy training method is a theoretical possibility, but due since the number of actions along a trajectory is usually rather large, the valishing gradient problem facing this methods makes it had to implement. In this paper,we focus our discussion on the Policy Gradient Method.
 
-When control researchers are first exposed to the proof of policy gradient method provided in Richard Sutton's book, they would find it difficult to swallow. The notations are tidious and the logic non-rigirous. A better proof was only recently presented. \cite{Schulman2015TrustRP}
-
-
-
-\subsection{Trust Region Policy Iteration}
-\subsection{Direct Policy Fitting}
+When control researchers are first exposed to the proof of policy gradient method provided in Richard Sutton's book, they would find it difficult to swallow. The notations are tidious and the logic non-rigirous. A better proof was only recently presented. Please refer to this paper for policy gradient derivation. \cite{Schulman2015TrustRP}
 
 \section{Approximate Dynamic Programming}
 
@@ -182,14 +168,8 @@ When control researchers are first exposed to the proof of policy gradient metho
 
 
 
-
-
 \subsection{Value Iteration and Policy Iteration}
 \subsection{Maximum Entropy Reinforcement Learning}
-
-
-kjhjhjhjhjh
-
 
 
 
@@ -205,36 +185,6 @@ kjhjhjhjhjh
 One of the corrilary of the development of reinforcement leraning is improvement in computational infrastructure, which is something the control community can take advantage of. Before this wave of hype in machine learning, GPU enabled computation was a specialty knowledge that is only accessable to large corporations. But now, with CUDA and related software, such compuational power is as easy
 
 Random shoot is the idea if rolling out trajectory at random and wht the fuck is random shoot?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.2\textwidth]{Control3.png}
-    \caption{Policy Gradient}
-    \label{fig:PC}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.2\textwidth]{Control4.png}
-    \caption{Approximate Dynamic Programming}
-    \label{fig:ADP}
-\end{figure}
-
-
 
 
 

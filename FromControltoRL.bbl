@@ -84,4 +84,8 @@ A.~{Nagabandi}, G.~{Kahn}, R.~S. {Fearing}, and S.~{Levine}, ``Neural network
 C.~Blundell, J.~Cornebise, K.~Kavukcuoglu, and D.~Wierstra, ``Weight
   uncertainty in neural networks,'' \emph{ArXiv}, vol. abs/1505.05424, 2015.
 
+\bibitem{Schulman2015TrustRP}
+J.~Schulman, S.~Levine, P.~Abbeel, M.~I. Jordan, and P.~Moritz, ``Trust region
+  policy optimization,'' in \emph{ICML}, 2015.
+
 \end{thebibliography}
