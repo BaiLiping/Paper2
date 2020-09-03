@@ -42,21 +42,14 @@
 \begin{document}
 \bstctlcite{IEEEexample:BSTcontrol}
     \title{test}
-\title{Bridging Control, Optimization and Reinforcement Learning}
+\title{A Guide to Riding the Waves of Reinforcement Learning for Control Researchers}
 \author{ Zongqiang Pang,Liping Bai ~\IEEEmembership{Member,~IEEE,} \thanks{Nanjing Unversity of Posts and Telecommunications, College of Automation \& College of Artificial Intelligence, Nanjing, Jiangsu,210000 China email:zqpang@njupt.edu.cn}}
 % ====================================================================
 \maketitle
 % === ABSTRACT ====================================================================
 % =================================================================================
 \begin{abstract}
-
-This paper built on the survey of Benjamin Rachet to provide researchers in the field of control a bridge for incorporating reinforcement learning into their work. The proof of some of the key conlcusions are provided at the appendix, it is adapted from the book of Dimitrib. It is clear that at the intercection of control and reinforcement learning, there are a lot that can be done under the principals of decision makeing under uncertainty. There are lot that can be done with respect to there are that many incorpartted. Richard Demitric has proven that it is a sound principal.
-
-
-
-
-
-As a master student from college of automation who focused on reinforcement learning, i tried to apply for appropriate labs in automation department. What I find out is that there are lot of researchers trained in control theory would like to incorporate the latest development in reinforcement learning into their research, yet when they made the journey to study that subject, they find tidious/nonstandarized notations and lack of rigirous proof. The defining textbook for reinforcement learning is that of Richard Sutton, yet he is giered towards an audience with Computer Scinece background. The notations is filled with subscript and superscript such that it would make it easy to be implemented by computer. The proof in Richard Sutton's book is also not satisfying from a control theorist point of view, since the main objective of him is to get the concepts acrossed rather than prove the logic behind them. In this papyer, I hope to provide control researchers tools to make that jump into reinforcement learning by introducing simplified notations and provide proof to the key ideas in RL. It also serves as a survey on the researchs at the intercept between control theory and reinforcement learning.
+This paper is aimed at providing researchers in the field of control and optimization a bridge for incorporating deep reinforcement learning into their work. Considerable amount of progress has been made in deep learning and its associated compuatational infrastructure, which makes fast and accurate approximation a possiblity. Beyond the obvious increased capacity of perception such as facial recognition and natural language processing that can be integrated into control tasks, deep reinforcement learning and the compuational capacities comes with it should be better utilized by control researchers to formulate their problems. Off the shelf implementations of various reinforcement learning agents written in either PyTorch or Tensorflow can be easily found. Yet, when control researchers venture into this subject, they would find out that there is still quite a lot caveats and pitfalls when it comes to applying neural network to optimization problems. They can't just formulate their optimization problem into reinforcement learning format and let those off the shelf agents have a go at it. We summarized how optimization problems differ from problems such as facial recognition and how the mathematical tools we use differ vary as a result. We also provide a summary of existing researches at the croassroad between optimization and reinforcement learning.
 \end{abstract}
 % === KEYWORDS ====================================================================
 % =================================================================================
@@ -77,92 +70,175 @@ Reinforcement Learning, Control Theory, Optimal Control, Optimization
 % === I. Paper =============================================================
 % =================================================================================
 \section{Introduction}
-\IEEEPARstart{C}{ontrol}, Optimization and Reinforcement Learning are three distinct disciplines studying the same thing: controlling in a dynamic environment. Unfortunately, the silos of institutions means these three communities have their own channel of exchange. For instance, in Chinese institutions, Control and Optimization is usually housed in the department of Automation where the bread and butter of their work is modelling based on differential equations and solutions of control laws based on matrix theory and stochastic process. Their publication is usually funnelled through IEEE Transactions. Reinforcement Learning on the other hand, is usually housed in the Computer Science Department, where they use Statistical Learning theory to control a dynamic system with or without a physical model.Their research is usually funnelled through ACM affiliated publications.
+\IEEEPARstart{R}{einforcement} learning is process of methotically extracting information from observations to gradually bound the policy distribution, either directly through policy gradient methods or via scafolding measurements, such that the expected reward along a trajectory is maximized. This objective is quite similar to that of Trajectory Optimization which utilizes myriade of computational techniques to incorporating scripted constraints, which capture the dynamics of a system with exquisit equations. They are the "Black Box" approach and "White Box" approach to the problem of control, neither is perfect.
 
-The success of reinforcement learning has lured people from traditional control background to incorporate those techniques into their research. Recently, there are interdiscipline conferences held specifially for the purpose of briding the gaps between these three groups of people, for instance the \href{https://l4dc.mit.edu/}{L4DC (Learning for Dynamic Control) conference} and \href{https://www.ipam.ucla.edu/programs/workshops/intersections-between-control-learning-and-optimization/}{Intersections between Control, Learning and Optimization Workshop}.
+The "Black Box" approach requires copious amount of data. Efforts has been made to make it more broadly applicable and more efficient. For instance, Sergey Levine utilizes unsupervised learning to build an agent with intuitions of the physical world \cite{Finn2016UnsupervisedLF}; Chelsea Finn introduced Meta-Learning \cite{Finn2017ModelAgnosticMF} to extract overaching structures embedded in similar tasks of different setting. This line of research is mostly done in the Computer Science department, and the most important tool kit for them is statistical learning theory. Despite effort from the best mathematical minds, some complicated dynamics still elude the "White Box" approach.
 
-Let us first consolidate the stylistic difference between RL community and Control community. For RL community, the system of notations are that of Richard Bellman, who studied dynamic programming.  For them, state is denoted by $ \mathcal{S}$, action is denoted by $\mathcal{A} $, the dynamics and stochasticity are captured via the transition matrix $\mathcal{P}$ of a Markov Decision Process. For Control community, the system of notations are that of Lev Pontryagin. State is denoted by $\mathcal{X}$, action is denoted by $\mathcal{U}$. The dynamics and stochasticity are captured via additive noise $\epsilon$ in the update rule: $x_{t+1}=\mathcal{f}(x_t,u_t)+\epsilon_t$
+It is obvious that biological systems approaches control from both angles. Unfortunately, these two subjects are studied by two communities of researchers who use different notations to discribe the same processes and they publish their research only in journals of their own disciplines. In this paper, we hope to provide a bridge for researchers in the field of control theories who would like to incorporate reinforcement learning into their works.
 
+We are not the first ones to take up this challenge. Recently, there are interdiscipline conferences held specifially for the purpose of briding the gaps between these groups of people, for instance the \href{https://l4dc.mit.edu/}{L4DC (Learning for Dynamic Control) conference} and \href{https://www.ipam.ucla.edu/programs/workshops/intersections-between-control-learning-and-optimization/}{Intersections between Control, Learning and Optimization Workshop}.
 
+In this paper, we build on the work of Benjamin Recht \cite{Recht2018ATO} to formulate reinforcelent learning in the language of optimization. The first barrier facing control researchers is consolidating the notation between control and reinforcement learning communities. Control communities use the notation system introduced by Lev Pontryagin. State is denoted $ \mathcal{X}$, Action is denoted $\mathcal{U}$, which is the first letter of Russian for "Action", the dynamics and stocasticity is captured by physical model constraints $x_{t+1}=f(x_t,u_t,e_t)$ where e denote the noise of a system. The objective is usually to minimize the cost funtion $\mathcal{J(.)}$. Reinforcement Learning communities use the notation system introduced by Richard Bellman who studied dynamic programming. State is denoted $\mathcal{S}$, Action is denoted $\mathcal{A}$. The dynamics and stochaticity is captured via transition matrix $\mathcal{P}$ of a Markov Decision Process.The objective of RL is the maximize the reward function $\mathcal{R(.)}$. Yet, if we set the transition matrix to be identical to the noise, then it is clear that the underlying process behind these two notation system are exactly the same. The differences are nothing but style. Since the audience of our paper is the control community, we would cast reinforcement learning in the control notation system.
 
-
-
-
-
-One of the obsticle for bringing everyone together is the notations. Much like a language, the style of notation is how researchers of various disciplines disttinguish one another. The starting point of reinforcement learning theory is Markov Decision Process(MDP) which is not so for the vast majority of control theory. For control theoriest, a system is usually expressed as a step-wise update: $ x_{t+1} = \mathcal{f}(x_t,u_t,e_t)$ where x is the state of the system, u is the control measure, e is the error where stochastidy is encoded. MDP encode stochastidy via transition matrix,   $ \mathcal{P}_{ss'}^a := Pr\{S_{t+1}=s'|S_{t}=s,A_{t}=a\}$ where s' is the new state, a is the action taken. A control theoriest would write it as $ \mathcal{P}_{x'x}^u := Pr\{X_{t+1}=x'|X_{t}=x, U_{t}=u\}$ If the transition matrix in MDP is equivolent to the error in step wise update, then clearly, this two ways of describing a system is equivolent.In this paper, the style of notation would be the step wise update with error since the target audience is control theoriests rather than computer scientists.
-
-Another obsticle facing control theoriest is how tidious the notation in reinforcement learning is. Often times, there are multiple subscripts and superscripts to denote time, action, etc. Proof with this set of notation is extremely confusing. Quite often, control theoriests find themselves spending more time sorting out the transcripts than they would like to. In this paper, we introduce a set of simplifed notations based on the book of D. P. Bertsekas. Proof of key results in reinforcement learning is listed with this set of simplifed notations.
-
-The aim of this paper is to provide resources to control theoriest who want to embark on the journey of reinforcement learning. All the milestones in reinforcement learning are casted in the light of control theory. In the first section, the notation is introduced. In the second section, detailed proof is provided. In the third section, a list of intersections between control and reinforcement learning provided.
+We would first introduce where to bring approximation into optimization and the mathematical tools we need to better formulate such approximations. We then elaborate on the enumerated path in section II and list all the papers in this area of research. There are low handing fruit for incorporating the subjects of control and reinforcement learning such as bringing vision into control, we exclude it from our paper and focusing only on bringing the approximation and computation into control.
 % === II. Harmonically-Terminated Power Rectifier Analysis ========================
 % =================================================================================
-\section{Simplied Notation}
-The theories of phased array were fully formulated during the WWII era where an array of radars was deployed to detect an accurate angle of arrival \cite{5237174}. Today, phased array hardware is widely available as a commercial product as shown in Figure \ref{fig:pivotal}. Together with various forms of Space Time Signal Processing(STSP), phased array and the beamforming technology has become the enabling components for future communication networks. There are different configurations of arrays, in this paper, we only consider one dimension uniform linear array.
+\section{Where to Approximate}
+The constraints imposed in the Trajectory Optimization formulation manifest themselves directly in policy $\pi(x)$ and resulting in either a narrow band of trajectories or a single optimal solution. However, adjustments in the reinforecement learning formuation is not the policy per se but its distribution. Eventually, what we hope to acheive via learning is a policy distribution, either through policy gradient method or cost to go method, which would maximize the expected reward of a trajectory.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.3\textwidth]{beamformer.png}
-\caption{Pivotal 39GHz Beamformer}
-\label{fig:pivotal}
-\end{figure}
-\subsection{Channel Model}
+Reinforcement Learning is not a new subject, control researchers probably know it by the name Approximate Dynamic Programming. Yet the major progress in recent years is the enhanced compuation power which brought about the potential of neuronetworks as a universal approximator \cite{Hornik1991ApproximationCO} to fruition. Most notably the series of wins reinforcement agents such as AlphaGo, AlphaStar forged against the best human players in the respective disciplines.
 
-Suppose there are p propogation path from transmitter to receiver. the gain for each path is denoted by $\alpha_i$. The channel is modeled as a sum of each path. When Line of Sight(LoS) not available and the number of path is large, Rayleigh fading and a pleathera of channel modelling techniques can be applied to capture Non Line of Sight channel gain. In this paper, we only consider the environment with direct Line of Sight transmission and no reflection path.
-
-
-
-\subsection{beamforming codebook $\mathcal{F}$}
-
-Let Angle of Departure(AoD) be denoted as $\varphi$. Suppose the the range of adjustment for the beamformer is $\zeta$ degrees and is deicretized into N portions, each with the angle adjustment of $\frac{\zeta}{N}$ degree. For the $i^{th}$ code in the codebook with AoD of $\varphi_i$, the beamforming vector is computed as the following:
-\begin{equation}
-\textbf{f} := \textbf{a}(\varphi_i)= [1,e^{jdcos(\varphi_i)},...,e^{jd(M-1)cos(\varphi_i)}]^T
-\end{equation}
-
-\subsection{System Model}
-
-The schematics of wirelessly powered communication network is shown in Figure \ref{fig:MIMO}. L energy transmitting node, each equipped with M radiating elements arranged as a uniform linear array, transmit power to K energy receivers scattered in an open field.
+Broadly speaking, there are three revenues where neuronetwork based approximation can find its way into optimization as shown in \ref{fig:1}. One is learning a dynamics model from samle; Second is policy gradient based learning; Third is approximation of cost to go functions such as value funtion and Q function. The details of the implementation would be specified in the subsequent sections.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{6.png}
-    \caption{Wirelessly Powered Network}
-    \label{fig:MIMO}
+    \includegraphics[width=0.5\textwidth]{Control.png}
+    \caption{From Optimization to Learning}
+    \label{fig:1}
 \end{figure}
 
-One challenge for energy beamforming is lack of channel information. Time Division Duplex is a common strategy to implement joint communication and energy transfer, where the wireless power transfer happens from time 0 to P and wireless information transfer(WIT) happens from time P to T. Therefore, no information can be sent before enough energy is stored during the power transfer phase. Ideally, pilots signals should be sent and decoded systematically for channel estimation. \cite{1597555}, yet this function is not available for energy beamforming because WIT and WPT functions are realized with separate circuits \cite{7462480}, where the latter does not provide decoding capacity. Previous works have proposed methods of channel estimation with only one-bit feedback \cite{6884811}, we would adopt this minimum feedback scheme in this paper.
+\section{Additional Mathematical Tools}
+Before we dive into the detailed researches in each category, we'd like to introduce additional mathematical tools and measurements that has been proven useful in merging reinforcement learning with optimization. As we discussed in the previous section, the major breakthrough in the field of reinforcement learning is not necessarily the theory but the computational infrustruction. Today, reinforcement learning agents implemented with Tensorflow or PyTorch is widely available, yet if you simply formulate an optimization problem into reinforcement learning format and apply those off the shelf reinforcement learning agents, it would hardly work.
 
-Because the energy beamforming signal \textbf{x} does not carry any information, it is assumed to be independent sequences with zero mean and unit variance. \cite{6884811} Furthermore, because we consider the beamformer to be analog, $x_1$ to $x_M$ are the same signal $x \in \mathbb{C}$.The power in noise is significantly weaker than the energy signal, therefore it can be ignored for practical purposes.
+Neuronetwork based approximation in the context of optimization and control is fundamentally different from those we find in applications such as facial recognition or natual language processing. Additional mathematical tools and measurements are required to fit the structures required by control problems. While the topic of statistical learning theory is vast and profund, we selected two concepts that is most germane for bridging reinforcement learning to control theoriest. The exact use of these concept would be specified in the subsequent sections when we discuss the related papers.
 
-Let $y_{j,p}$ denote the signal received on the $j^{th}$ receiver from the $p^{th}$ transmitter. $x_p$ be the signal transmitted from node p. $\textbf{f}_p$ be the beamforming code for node p.  $h_{i,p}^j$ denote the line of signt channel connecting $j^{th}$ receiver to $i^{th}$ radiating element from $p^{th}$ transmitting node.
+\subsection{Mutual Information}
+The go to text book for reinforcement learning community is that of Richard Sutton \cite{Sutton1998IntroductionTR}. In ths system contstructed by Richard, the objective of an agent is to maximize discounted reward. This formulation is proven a sound goal in the context of video games. However, for optimizations with a physics underpining, reward maximization is not adequate since noise and disturbances is common place in control.
 
-\[
-y_{j,p}=
-\begin{bmatrix}
-h_{1,p}^j & h_{2,p}^j & ... & h_{M,p}^j\\
-\end{bmatrix}
-\begin{bmatrix}
-f_{1,p}\\
-.\\
-.\\
-f_{M,p}\\
-\end{bmatrix}
-x_p
-\]
+The mathematical measurement used for mutual information \cite{Kullback1951ONIA}, which is the KL divergence. As people exposed to the measurement theory, one obvious question is that why divergence instead of distance?
+
+\subsection{Bayesian Neuro Network (BNN)}
+
+The venena formulation of neuronetwork is one where the weight of each neuron $w_i$ is a single number, which is adjusted based on the backward propogation process. Baysian Neuro Network is a network where the weigh is subject to a parameterized distribution as shown in Fig. \ref{fig:2} The use of Bayesian Neuro Network is to measure the uncertainly of the current iteration.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{bnn.png}
+    \caption{Neuronet and BNN}
+    \label{fig:2}
+\end{figure}
+
+\section{System Modelling}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Control1.png}
+\end{figure}
+
+For people who are trained in classical control theory, system modelling and system identification are the bread and butter of their field of study. One of the most obvious way to derive a model from learning is through the following althrithm:
+
+\begin{algorithm}
+\caption{Brute Force Modelling}
+\begin{algorithmic}[1]
+
+    \State run random policy, collect $\mathcal{D}=(x,u,x')_i$
+    \While{Model Has Not Converged}
+    \State fit model to minimize $\displaystyle \sum_i \left\|\hat{f}(x_i,u_i)-x'\right\|$
+    \State Model Predictive Control using $\hat{f}(x_i,u_i)$
+    \State exercute control collect new data
+    \State append new data to $\mathcal{D}$
+    \EndWhile
+
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Measure Model Uncertainty with BNN}
+
+While in theory the aforementioned brute force modelling method should work, in practice it is proven to be far from satisfactory. \cite{8463189}. One possible explanation is that any overfitting of the model would be hard to overcome, resulting in suboptimal performance. One solution is to measure uncertainly of the model with BNN.
+
+asdfjajdflajsdlfjajdsfl;adfjlakjdflajsdflajkdfsjaldfja
+
+
+\subsection{Embeded Optimization Layer and Residual Dynamics}
+Writing governing equations of a physical system is something classical control theoriest trained on, yet there are always dynamics which are too intricate to be captured in full. One mental tool to deal with the uncaptured dynamics is to pack them all into a parameterized distribution which can be approximated with neuronetwork. There are two approaches in merging physics model with neuronetwork. One is to embed the optimization solver as a layer in the neuronet \cite{BelbutePeres2018EndtoEndDP} \cite{BelbutePeres2020CombiningDP} \cite{Agrawal2019DifferentiableCO}, two is to only approximate residual dynamics that can't be fully captured by the existing model \cite{Shi2019NeuralLS}.
 
 
 
-In this paper, we assume that the radiating elements from the same node share the same path gain $\alpha$. Let $\alpha_{j,p}$ denote path gain for line of sight channel connecting $j^{th}$ receiver to $p^{th}$ transmitter.$\varphi_{j,p}$ denote the Angle of Departure connecting $j^{th}$ receiver to $p^{th}$ transmitter. $\textbf{a}(\varphi_{j,p})^*=[1,e^{jdcos(\varphi_{j,p}},...,e^{jd(M-1)cos(\varphi_{j,p})})]$. Therefore:
-\begin{equation}
-y_{j,p}=\alpha_{j,p} \textbf{a}(\varphi_{j,p})^* \textbf{f}_p x_p
-\end{equation}
-The received signal on the $j^{th}$ receiver is a summation of signals delievered from all the transmitters to this receiver.
-\begin{equation}
-y_j=\sum_{p=1}^L \alpha_{j,p} \textbf{a}(\varphi_{j,p})^* \textbf{f}_p x_p
-\end{equation}
-Let the wireless power transfer happening for duration P. Received energe on the $j^{th}$ receiver for duration P is:
-\begin{equation}
-e_j=\int_0^P |y_j(t)|^2 dt=\int_0^P |\sum_{p=1}^L \alpha_{j,p} \textbf{a}(\varphi_{j,p})^* \textbf{f}_p x_p(t)|^2 dt
-\end{equation}
+
+
+
+\subsection{Safe Region}
+
+
+\section{Policy Gradient}
+\subsection{Trust Region Policy Iteration}
+\subsection{Direct Policy Fitting}
+
+\section{Approximate Dynamic Programming}
+
+
+
+
+
+
+
+
+
+\subsection{Value Iteration and Policy Iteration}
+\subsection{Maximum Entropy Reinforcement Learning}
+Exploration and Exploitation trade off is something studied exhaustively in the reinforcement learning community. A common strategy is $\epsilon$ greedy policy where the value of epsilon decays as the learning progresses. Yet, the decaying rate is a hyperparater that need to be tuned. Is there are more sysmtmatical way to balance the exploration and exploitation trade-off? This is particularly important for control related training since this application has considerable amount of disturbance and noise. If the policy converges too soon, any subsequent disturce can deviate the trajectory to the extend that it is no longer controllable.
+
+The intuition behind maximum entropy reinforcenement learning is the heuristic that when we don't know all the circumstance, we should prioritize options that could give us more choices regardless of how the system dynamics turns out to be. Statitically speaking, this means we should maximize the entropy of a distribution, which measures how uncertain or how broad the distributionb is.
+
+
+kjhjhjhjhjh
+
+
+
+
+
+
+\section{Other Ways to Utilize Increased Computational Power}
+\subsection{Multiagent Formulation}
+\subsection{Monte Carlo Tree Search}
+
+
+
+\subsection{Random Shoot}
+One of the corrilary of the development of reinforcement leraning is improvement in computational infrastructure, which is something the control community can take advantage of. Before this wave of hype in machine learning, GPU enabled computation was a specialty knowledge that is only accessable to large corporations. But now, with CUDA and related software, such compuational power is as easy
+
+Random shoot is the idea if rolling out trajectory at random and wht the fuck is random shoot?
+
+
+
+
+
+
+
+
+
+
+
+
+random text
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Control1.png}
+    \caption{Optimization}
+    \label{fig:CO}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Control2.png}
+    \caption{System Identification}
+    \label{fig:SI}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Control3.png}
+    \caption{Policy Gradient}
+    \label{fig:PC}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{Control4.png}
+    \caption{Approximate Dynamic Programming}
+    \label{fig:ADP}
+\end{figure}
+
+
 
 \subsection{Wireless Power Transfer}
 
@@ -183,22 +259,7 @@ The objective of energy beamforming control is to choose a beamforming code for 
 
 
 \subsection{problem setup}
-The impetus of reinforcement learning is that an agent can learn by interacting with the environment. In the intersection between control, optimization, and learning, the problem have different mathematical formulations. Here, we follow the problem setup proposed by Richard Sutton in his book Introduction to Reinforcement Learning. \cite{10.5555/551283}
-
-Agent can observe the state at each step, denoted as $ S_{t} $, where t is the $t^{th}$ step taken. For our discussion, we focus only on the subset of problems where state s is fully observable by the agent. There are action choices for each state denoted as $ A_{t} $. A reward is given for each action taken at step t denoted as $ R_{t} $. The terminal step is denoted as t=T. For an episodic problem, T is a finite number, for a non-episodic problem, T=$\infty$
-
-An episode of data is registered as an alternating sequence of state, action, and reward:
-
-$$ S_{0}, A_{0}, R_{0}, S_{1}, A_{1}, R_{1}.......S_{T-1},A_{T-1},R_{T-1},S_{T},A_{T},R_{T} $$
-
-Gain at step t is defined as the accumulative reward the agent can get from step t onward. A discounting factor $\gamma$ between 0 to 1 is introduced to incorporate the sense of time, much like how interest rate encodes time in financial systems:
-
-\begin{equation}
-G_{t} := R_{t}+\gamma R_{t+1}+\gamma ^2 R_{t+2}+...+\gamma^{T-t}R_{T}
-\end{equation}
-
-
-This can be written in its recursive form, known as Bellman Equation, which is the basis for an iteratively implemented backward induction algorithm:
+Twritten in its recursive form, known as Bellman Equation, which is the basis for an iteratively implemented backward induction algorithm:
 
 \begin{equation}
         G_{t}=R_{t}+\gamma G_{t+1}
@@ -254,7 +315,7 @@ For online learning, $\epsilon$-greedy Policy $\pi_{\epsilon}(s)$ is frequently 
 \end{equation*}
 
 \subsection{With Approximation}
-When the problem gets complex, state S becomes a rather large vector and function approximation with neuro networks can be utilized to facilitate learning. Reinforcement learning as a self-sustaining mathematical framework has been refined by Rich Sutton et al. since the 1980s. Only recently, the progress made with Deep Learning has been applied to the realm of Reinforcement Learning \cite{Mnih2013PlayingAW}, rendering the computation tenable with existing hardare.
+When the problem gets complex, state S becomes a rather large vector and function approximation with neuro networks can be utilized to facilitate learning. Reinforcement learning as a self-sustaining mathematical framework has been refined by Rich Sutton et al. since the 1980s. Only recently, the progress made with Deep Learning has been applied to the realm of Reinforcement Learning
 
 Let the value function and state/action function be parameterized with $\textbf{w}:  \hat{v}(s,\textbf{w}) \approx v(s)$ and $\hat{q}(s,a,\textbf{w}) \approx q(s,a) $
 
@@ -321,7 +382,6 @@ Actor-Critic Method takes advantage of both policy gradient and function approxi
 \subsection{Multiagent Reinforcement Learning}
 $A_t=\{A_t^1,A_t^2,...,A_t^M\}$ M is the number of agents. The action space is cartician product of action choices available to each agent. $A_t(s)=A_t^1(s) \times A_t^2(s) \times ... \times A_t^M(s)$, which grows exponentially as the number of agents grows.
 
-The Rollout method proposed by Dimitri Bertsekas breakdown this collective decision into its sequential components, reducing the complexity of action space while increasing the complexity of state space. It is proven that the intermediate state rollout method yields the same result as does the regular method. \cite{Bertsekas2019MultiagentRA}
 
 Without intermidiate state rollout, the sequences of data collected is:
 ...$S_t, A_t, R_t, S_{t+1}$... as shown in Figure \ref{fig:without}
