@@ -143,14 +143,14 @@
      inkscape:pageshadow="2"
      inkscape:zoom="5.6568542"
      inkscape:cx="317.32006"
-     inkscape:cy="815.92037"
+     inkscape:cy="830.06251"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1338"
-     inkscape:window-height="842"
+     inkscape:window-width="1538"
+     inkscape:window-height="960"
      inkscape:window-x="62"
-     inkscape:window-y="21"
+     inkscape:window-y="27"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
@@ -175,11 +175,11 @@
        inkscape:connector-curvature="0" />
     <rect
        id="rect1054"
-       width="13.846983"
+       width="16.138819"
        height="3.8222075"
-       x="60.484085"
+       x="58.192249"
        y="87.725967"
-       style="fill:#00a000;fill-opacity:0.41545895;stroke-width:0.04507361" />
+       style="fill:#00a000;fill-opacity:0.41545895;stroke-width:0.04866096" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        d="m 105.10385,204.3976 75.89257,0.35801"
@@ -476,11 +476,11 @@
            inkscape:connector-curvature="0"
            style="fill:#000000;stroke-width:0" /></g>    </g>
     <rect
-       style="fill:#cbe4ae;fill-opacity:0.41545895;stroke-width:0.30524188"
+       style="fill:#cbe4ae;fill-opacity:0.41545895;stroke-width:0.32179219"
        id="rect327-9"
-       width="14.521421"
+       width="16.138823"
        height="11.116766"
-       x="59.80965"
+       x="58.192249"
        y="80.431404" />
     <text
        xml:space="preserve"
@@ -1062,7 +1062,7 @@
        inkscape:connector-curvature="0" />
     <g
        id="g7222"
-       transform="matrix(0.10162297,0,0,0.12855405,51.745391,77.413553)">
+       transform="matrix(0.1057879,0,0,0.12596035,50.831822,78.214086)">
       <g
          word-spacing="normal"
          letter-spacing="normal"
@@ -1101,7 +1101,7 @@
            inkscape:connector-curvature="0"
            style="fill:#000000;stroke-width:0" /><polygon
            id="polygon7197"
-           points="635.83,446.19 641.61,451.27 647.35,446.19 648.24,447.08 641.61,453.86 634.94,447.08 "
+           points="641.61,453.86 634.94,447.08 635.83,446.19 641.61,451.27 647.35,446.19 648.24,447.08 "
            style="fill:#000000;stroke-width:0" /><path
            id="path7199"
            d="m 636.76,426.12 h 4.28 c 1,0 1.5,0 1.5,1 0,0.55 -0.5,0.55 -1.34,0.55 h -4.14 l 1.04,5.69 c 0.21,1.04 0.91,4.57 1.21,5.17 0.45,0.95 1.29,1.7 2.34,1.7 0.19,0 1.49,0 2.44,-0.91 -2.19,-0.18 -2.69,-1.93 -2.69,-2.68 0,-1.14 0.89,-1.74 1.85,-1.74 1.29,0 2.73,1.1 2.73,2.99 0,2.29 -2.3,3.43 -4.33,3.43 -1.7,0 -4.84,-0.89 -6.33,-5.82 -0.29,-1.05 -0.45,-1.55 -1.64,-7.83 h -3.43 c -0.96,0 -1.5,0 -1.5,-0.94 0,-0.61 0.45,-0.61 1.39,-0.61 h 3.29 l -3.75,-19.67 c -0.89,-4.83 -1.73,-9.38 -4.33,-9.38 -0.2,0 -1.43,0 -2.38,0.91 2.29,0.14 2.73,1.94 2.73,2.69 0,1.14 -0.89,1.75 -1.85,1.75 -1.29,0 -2.73,-1.1 -2.73,-3 0,-2.24 2.19,-3.44 4.23,-3.44 2.74,0 4.74,2.94 5.63,4.84 1.59,3.14 2.75,9.16 2.8,9.52 z"

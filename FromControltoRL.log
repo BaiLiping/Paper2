@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.2)  3 SEP 2020 23:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2020.9.2)  4 SEP 2020 09:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -981,7 +981,7 @@ ABD: EveryShipout initializing macros
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 83.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 81.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -990,7 +990,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 83.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 81.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -998,87 +998,81 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<Control.png, id=78, 995.72pt x 626.34pt>
+<Control.png, id=78, 1046.91125pt x 636.3775pt>
 File: Control.png Graphic file (type png)
 <use Control.png>
-Package pdftex.def Info: Control.png  used on input line 97.
-(pdftex.def)             Requested size: 258.0pt x 162.29024pt.
+Package pdftex.def Info: Control.png  used on input line 93.
+(pdftex.def)             Requested size: 258.0pt x 156.82176pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 97--98
+Overfull \hbox (6.0pt too wide) in paragraph at lines 93--94
  [][] 
  []
 
-[2 <./Control.png>]
-<combine1.png, id=98, 964.60374pt x 476.78125pt>
+<combine1.png, id=89, 964.60374pt x 476.78125pt>
 File: combine1.png Graphic file (type png)
 <use combine1.png>
-Package pdftex.def Info: combine1.png  used on input line 132.
+Package pdftex.def Info: combine1.png  used on input line 141.
 (pdftex.def)             Requested size: 129.0pt x 63.75885pt.
-<combine2.png, id=99, 725.71124pt x 309.155pt>
+<combine2.png, id=90, 725.71124pt x 309.155pt>
 File: combine2.png Graphic file (type png)
 <use combine2.png>
-Package pdftex.def Info: combine2.png  used on input line 137.
+Package pdftex.def Info: combine2.png  used on input line 146.
 (pdftex.def)             Requested size: 129.0pt x 54.95204pt.
 
-Overfull \hbox (6.0pt too wide) in paragraph at lines 130--140
+Overfull \hbox (6.0pt too wide) in paragraph at lines 139--149
  []$[]$$[]$ 
  []
 
-<bnn.png, id=102, 637.38126pt x 263.98625pt>
+
+Underfull \vbox (badness 4859) has occurred while \output is active []
+
+ [2 <./Control.png>]
+<bnn.png, id=109, 637.38126pt x 263.98625pt>
 File: bnn.png Graphic file (type png)
 <use bnn.png>
-Package pdftex.def Info: bnn.png  used on input line 149.
+Package pdftex.def Info: bnn.png  used on input line 159.
 (pdftex.def)             Requested size: 154.80157pt x 64.11124pt.
+ (./FromControltoRL.bbl [3 <./combine1.png> <./combine2.png> <./bnn.png (PNG co
+py)>]) [4
 
-Underfull \vbox (badness 1540) has occurred while \output is active []
-
-
-(./FromControltoRL.bbl) [3 <./combine1.png> <./combine2.png> <./bnn.png (PNG co
-py)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 201.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 201.
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 210.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 210.
  (./FromControltoRL.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 201.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 201.
-
-
-Package rerunfilecheck Warning: File `FromControltoRL.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `FromControltoRL.out':
-(rerunfilecheck)             Before: FDBBEA99348273D7AE15915BF47A178F;729
-(rerunfilecheck)             After:  2CD857363C12AEE05F3D68294B93D3DE;729.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 201.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 210.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 210.
+Package rerunfilecheck Info: File `FromControltoRL.out' has not changed.
+(rerunfilecheck)             Checksum: D1297FFA13557D12EA680C3DE8736169;707.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 210.
  ) 
 Here is how much of TeX's memory you used:
- 23026 strings out of 481239
- 417068 string characters out of 5920378
- 692793 words of memory out of 5000000
- 37634 multiletter control sequences out of 15000+600000
- 651377 words of font info for 239 fonts, out of 8000000 for 9000
+ 23030 strings out of 481239
+ 417166 string characters out of 5920378
+ 692864 words of memory out of 5000000
+ 37636 multiletter control sequences out of 15000+600000
+ 651274 words of font info for 238 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,8n,60p,1492b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{section*.6} has been referenced but does not exis
-t, replaced by a fixed one
-
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on FromControltoRL.pdf (3 pages, 581346 bytes).
+ 60i,8n,60p,1489b,465s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on FromControltoRL.pdf (4 pages, 584226 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 139 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
+ 175 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
+ 38 named destinations out of 1000 (max. 500000)
  27769 words of extra memory for PDF output out of 29859 (max. 10000000)
 

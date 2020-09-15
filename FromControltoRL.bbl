@@ -43,12 +43,15 @@ K.~Hornik, ``Approximation capabilities of multilayer feedforward networks,''
 S.~Levine, ``Reinforcement learning and control as probabilistic inference:
   Tutorial and review,'' \emph{ArXiv}, vol. abs/1805.00909, 2018.
 
-\bibitem{Sutton1998IntroductionTR}
-R.~Sutton and A.~Barto, ``Introduction to reinforcement learning,'' 1998.
-
 \bibitem{Kullback1951ONIA}
 S.~Kullback and R.~A. Leibler, ``On information and sufficiency,'' \emph{Annals
   of Mathematical Statistics}, vol.~22, pp. 79--86, 1951.
+
+\bibitem{Shi2019NeuralLS}
+G.~Shi, X.~Shi, M.~O'Connell, R.~Yu, K.~Azizzadenesheli, A.~Anandkumar, Y.~Yue,
+  and S.-J. Chung, ``Neural lander: Stable drone landing control using learned
+  dynamics,'' \emph{2019 International Conference on Robotics and Automation
+  (ICRA)}, pp. 9784--9790, 2019.
 
 \bibitem{Hewing2020LearningBasedMP}
 L.~Hewing, K.~P. Wabersich, M.~Menner, and M.~N. Zeilinger, ``Learning-based
@@ -84,8 +87,19 @@ A.~{Nagabandi}, G.~{Kahn}, R.~S. {Fearing}, and S.~{Levine}, ``Neural network
 C.~Blundell, J.~Cornebise, K.~Kavukcuoglu, and D.~Wierstra, ``Weight
   uncertainty in neural networks,'' \emph{ArXiv}, vol. abs/1505.05424, 2015.
 
+\bibitem{Gal2017ConcreteD}
+Y.~Gal, J.~Hron, and A.~Kendall, ``Concrete dropout,'' in \emph{NIPS}, 2017.
+
+\bibitem{Williams1992SimpleSG}
+R.~J. Williams, ``Simple statistical gradient-following algorithms for
+  connectionist reinforcement learning,'' \emph{Machine Learning}, vol.~8, pp.
+  229--256, 1992.
+
 \bibitem{Schulman2015TrustRP}
 J.~Schulman, S.~Levine, P.~Abbeel, M.~I. Jordan, and P.~Moritz, ``Trust region
   policy optimization,'' in \emph{ICML}, 2015.
+
+\bibitem{Sutton1998IntroductionTR}
+R.~Sutton and A.~Barto, ``Introduction to reinforcement learning,'' 1998.
 
 \end{thebibliography}
