@@ -1,21 +1,18 @@
-This is BibTeX, Version 0.99d
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: FromControltoRL.aux
-Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: IEEEtran.bst
-Reallocating 'name_of_file' (item size: 1) to 13 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
-Reallocating 'wiz_functions' (item size: 4) to 6000 items.
-Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: Bibliography.bib
 Repeated entry---line 97 of file Bibliography.bib
  : @inproceedings{Sutton1998IntroductionTR
  :                                        ,
 I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "IEEEexample:BSTcontrol"
-Warning--I didn't find a database entry for "Schulman2015TrustRP"
 -- IEEEtran.bst version 1.11 (2003/04/02) by Michael Shell.
 -- http://www.ctan.org/tex-archive/macros/latex/contrib/supported/IEEEtran/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -25,7 +22,7 @@ Warning--empty booktitle in Hewing2020LearningBasedMP
 Done.
 You've used 15 entries,
             3975 wiz_defined-function locations,
-            886 strings with 9774 characters,
+            884 strings with 9736 characters,
 and the built_in function-call counts, 8192 in all, are:
 = -- 614
 > -- 213
